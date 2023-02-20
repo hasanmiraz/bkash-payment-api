@@ -4,10 +4,10 @@ from . import views
 urlpatterns = [
     path("grant/",views.grantTokenView),
     path("refresh/",views.refreshTokenView),
-    path("create/",views.createPaymentView),
-    path("execute/",views.executePaymentView),
+    path("create/",views.createView),
+    path("execute/",views.executeView),
     path("refund/",views.refundView),
     path("cancelagreement/",views.cancelAgreementView),
-    # path("",views.testing),
+    # path("test",views.testView),
     path("",views.index),
 ]

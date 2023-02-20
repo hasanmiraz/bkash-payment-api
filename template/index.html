@@ -33,13 +33,13 @@
                                 <!-- <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notify Me!</button></div> -->
                             <!-- </div> -->
                             <a class="btn btn-primary" href="http://127.0.0.1:8000/grant/?mode=0011">Donate</a>
-                            {% if not agreementID %}
+                            {% if not customerMsisdn %}
                             <a class="btn btn-primary" href="http://127.0.0.1:8000/grant/?mode=0000">Add Wallet</a>
                             {% endif %}
                         </div>
-                        {% if agreementID %}
+                        {% if customerMsisdn %}
                         <form class="alert alert-dark mt-5 w-75 d-flex justify-content-between mx-auto align-items-center" action="" method="post">
-                                <h6>{{agreementID}}</h6>
+                                <h6>{{customerMsisdn}}</h6>
                                 <a class="btn btn-success" href="http://127.0.0.1:8000/grant/?mode=0001">Donate</a>
                                 <a class="btn btn-close" href="http://127.0.0.1:8000/cancelagreement/?mode=0001"></a>
                                 <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->

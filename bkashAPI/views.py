@@ -21,11 +21,14 @@ def debugTool(**kwargs):
 
 # Create your views here.
 
-#Index Page
+# TESTING
+    
+#INDEX PAGE
 @api_view(["GET"])
 def index(request):
     agreementModel_query = agreementModel.objects.all()
     json_responseApi = requestData.indexData(agreementModel_query)
+    debugTool(function_name = "index", json_responseApi = json_responseApi)
     if request.method == "GET":
         return render(request, "index.html", json_responseApi)
 
@@ -66,7 +69,7 @@ def refreshTokenView(request):
 
 # Create Payment and Create Agreement
 @api_view(["GET"])
-def createPaymentView(request):
+def createView(request):
     if request.method == "GET":
         grantTokenModel_query = grantTokenModel.objects.get()
         createPaymentIDModel_object = createPaymentIDModel()
@@ -101,7 +104,7 @@ def createPaymentView(request):
 
 # Execute Payment and Execute Agreement
 @api_view(["GET"])
-def executePaymentView(request):
+def executeView(request):
     if request.method == "GET":
         grantTokenModel_query = grantTokenModel.objects.get()
         successPaymentModel_object = successPaymentModel()
@@ -129,6 +132,7 @@ def executePaymentView(request):
             # for agreement execution
             elif "agreementID" in json_responseApi:
                 agreementModel_object.agreementID = json_responseApi["agreementID"]
+                agreementModel_object.customerMsisdn = json_responseApi["customerMsisdn"]
                 agreementModel_object.save()
                 json_responseApi = requestData.agreementStatusData(json_responseApi["statusMessage"], get_paymentID, json_responseApi["agreementID"])
 
@@ -144,7 +148,13 @@ def executePaymentView(request):
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-# Cancel Agreement
+# QUERY AGREEMENT
+def queryAgreementView(request):
+    agreementModel_query = agreementModel.objects.all()
+    if len(agreementModel_query) == 0:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+# CANCEL AGREEMENT
 @api_view(["GET"])
 def cancelAgreementView(request):
     if request.method == "GET":

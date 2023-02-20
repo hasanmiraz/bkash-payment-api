@@ -15,6 +15,7 @@ class successPaymentModel(models.Model):
 
 class agreementModel(models.Model):
     agreementID = models.TextField()
+    customerMsisdn = models.TextField()
 
 class refundModel(models.Model):
     paymentID = models.TextField()

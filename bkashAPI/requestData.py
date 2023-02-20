@@ -114,6 +114,6 @@ def agreementStatusData(status, paymentID, agreementID):
 
 def indexData(agreementData):
     if len(agreementData)==0:
-        return ({"agreementID" : ""})
-    return({"agreementID" : agreementData[0].agreementID})
+        return ({"customerMsisdn" : ""})
+    return({"customerMsisdn" : agreementData[0].customerMsisdn})
 
